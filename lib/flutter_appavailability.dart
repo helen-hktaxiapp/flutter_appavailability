@@ -57,7 +57,7 @@ class AppAvailability {
   static Future<List<Map<String, String?>?>> getInstalledApps() async {
     List<dynamic>? apps = await _channel.invokeMethod("getInstalledApps");
     if (apps != null && apps is List) {
-      List<Map<String, String?>> list = [];
+      List<Map<String, String?>> list = List.filled(0, Map(), growable: true);
       for (var app in apps) {
         if (app is Map) {
           list.add({
@@ -71,7 +71,7 @@ class AppAvailability {
 
       return list;
     }
-    return [];
+    return List.filled(1, Map(), growable: true);
   }
 
   /// Only for **Android**.
